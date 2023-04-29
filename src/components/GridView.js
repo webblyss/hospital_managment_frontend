@@ -11,8 +11,8 @@ const GridView = () => {
   return (
     <div className='w-[80%] h-full mx-auto my-5 grid grid-cols-4 gap-4'>
         <Card text={"Patient Registration"} icon={IMG1} path={"patient-registration"}/>
-        <Card text={"Consultation"} icon={IMG2}/>
-        <Card text={"Patient Registration"} icon={IMG3}/>
+        <Card text={"Consultation"} icon={IMG2} path={"consultation"}/>
+        <Card text={"Male Ward"} icon={IMG3}/>
         <Card text={"Patient Registration"} icon={IMG4}/>
         <Card text={"Patient Registration"} icon={IMG3}/>
     </div>

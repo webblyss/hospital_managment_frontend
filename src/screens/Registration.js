@@ -47,7 +47,7 @@ const Registration = () => {
     await axios.post("http://127.0.0.1:8000/api/registration/",data).then((response)=>{
         console.log(response)
         resetForm()
-        window.prompt('Form submitted successfully!');
+        window.alert('Form submitted successfully!');
     })
     };
 
