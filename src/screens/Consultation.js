@@ -1,10 +1,16 @@
 import React,{useEffect,useState} from 'react';
 import NavigationBar from '../components/Nav';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Consultation = () => {
   const [data, setData] = useState([]);
+  const navigate = useNavigate(); 
+
+//   HANDLE ROUTE CLICK
+  const handleClick = (id) => {
+    navigate(`/consultation/details/${id}`, { state: { data: 'my data' } });
+  }  
 
     useEffect(()=>{
         axios.get("http://127.0.0.1:8000/api/opd/").then((response)=>{
@@ -52,7 +58,7 @@ const Consultation = () => {
           </thead>
           {data.map((item,index)=>{
              
-             return <tr className="cursor-pointer hover:bg-gray-100">
+             return <tr onClick={()=>{handleClick(item.patient_info.id)}} className="cursor-pointer hover:bg-gray-100">
                <td className="whitespace-nowrap px-6 py-4 font-medium">{index + 1}</td>
                <td className="whitespace-nowrap px-6 py-4">{item.patient_info.firstName}</td>
                <td className="whitespace-nowrap px-6 py-4">{item.patient_info.lastName}</td>

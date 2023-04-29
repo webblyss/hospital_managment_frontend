@@ -4,6 +4,7 @@ import Dashboard from "./screens/Dashboard";
 import Registration from "./screens/Registration";
 import Login from "./screens/Login";
 import Consultation from "./screens/Consultation";
+import PatientConsultationScreen from "./screens/PatientConsultationScreen";
 function App() {
   return (
     <div className="App">
@@ -13,6 +14,7 @@ function App() {
         <Route path="/patient-registration" element={<Registration/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/consultation" element={<Consultation/>}/>
+        <Route path="/consultation/details/:id" element={<PatientConsultationScreen/>} />
       </Routes>
       </BrowserRouter>
     </div>
