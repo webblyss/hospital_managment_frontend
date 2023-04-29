@@ -1,36 +1,35 @@
-import React, { useEffect, useState } from "react";
-import NavigationBar from "../components/Nav";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import React,{useEffect,useState} from 'react';
+import NavigationBar from '../components/Nav';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const Consultation = () => {
-  const [data, setData] = useState([]);
-  const navigate = useNavigate();
+import {AiFillCheckSquare} from 'react-icons/ai';
 
-  //   HANDLE ROUTE CLICK
-  const handleClick = (id, item) => {
-    navigate(`/consultation/details/${id}`, { state: { data: item } });
-  };
 
-  useEffect(() => {
-    axios.get("http://127.0.0.1:8000/api/opd/").then((response) => {
-      setData(response.data);
-      console.log(data);
-    });
-  });
 
-  // Search functionality
-  // const search = (value) => {
-  //     const filtered = data.filter((item) =>
-  //       item.opd_info.patient_info.firstName.toLowerCase().includes(value.toLowerCase())
-  //     );
-  //     setFilteredData(filtered);
-  //   };
+const OPD = () => {
+    const [data, setData] = useState([]);
+    const navigate = useNavigate(); 
+    const handleClick = (id,item) => {
+         navigate(`/opd/details/${id}`, { state: { data: item } });
+      }  
+    
+        useEffect(()=>{
+            axios.get("http://127.0.0.1:8000/api/registration/").then((response)=>{
+                setData(response.data)
+                console.log(data)
+            });
+    
+        });
+      
+
+
+
 
   return (
     <div>
-      <NavigationBar />
-      <div className="w-[80%] h-full mx-auto flex flex-col mt-5 justify-center items-center">
+        <NavigationBar/>
+        <div className="w-[80%] h-full mx-auto flex flex-col mt-5 justify-center items-center">
         <div className="flex text-center  w-full justify-center">
           <input
             type="text"
@@ -62,13 +61,7 @@ const Consultation = () => {
                         Age
                       </th>
                       <th scope="col" className="px-6 py-4">
-                        Bp(mmHg)
-                      </th>
-                      <th scope="col" className="px-6 py-4">
-                        Temperature(°C)
-                      </th>
-                      <th scope="col" className="px-6 py-4">
-                        pulse(BPM)
+                        Vitals_checked
                       </th>
                     </tr>
                   </thead>
@@ -76,7 +69,7 @@ const Consultation = () => {
                     return (
                       <tr
                         onClick={() => {
-                          handleClick(item.patient_info.id, item);
+                          handleClick(item.id, item);
                         }}
                         className="cursor-pointer hover:bg-gray-100"
                       >
@@ -84,26 +77,22 @@ const Consultation = () => {
                           {index + 1}
                         </td>
                         <td className="whitespace-nowrap px-6 py-4">
-                          {item.patient_info.firstName}
+                          {item.firstName}
                         </td>
                         <td className="whitespace-nowrap px-6 py-4">
-                          {item.patient_info.lastName}
+                          {item.lastName}
                         </td>
                         <td className="whitespace-nowrap px-6 py-4">
-                          {item.patient_info.gender}
+                          {item.gender}
                         </td>
                         <td className="whitespace-nowrap px-6 py-4">
-                          {item.patient_info.age}
+                          {item.age}
                         </td>
-                        <td className="whitespace-nowrap px-6 py-4">
-                          {item.bp}
-                        </td>
-                        <td className="whitespace-nowrap px-6 py-4">
-                          {item.temperature}
-                        </td>
-                        <td className="whitespace-nowrap px-6 py-4">
-                          {item.pulse}
-                        </td>
+
+                      <td className='whitespace-nowrap px-6 py-4'>
+                      {item.vitals_checked  ? (<AiFillCheckSquare className='text-blue-500'/>) : (<span>vitals not checked</span>) }
+                      </td>
+                        
                       </tr>
                     );
                   })}
@@ -114,8 +103,9 @@ const Consultation = () => {
         </div>
         {/* <PatientCard/> */}
       </div>
-    </div>
-  );
-};
 
-export default Consultation;
+    </div>
+  )
+}
+
+export default OPD

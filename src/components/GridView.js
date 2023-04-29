@@ -13,7 +13,7 @@ const GridView = () => {
         <Card text={"Patient Registration"} icon={IMG1} path={"patient-registration"}/>
         <Card text={"Consultation"} icon={IMG2} path={"consultation"}/>
         <Card text={"Male Ward"} icon={IMG3}/>
-        <Card text={"Patient Registration"} icon={IMG4}/>
+        <Card text={"OPD "} icon={IMG4} path={'/opd'}/>
         <Card text={"Patient Registration"} icon={IMG3}/>
     </div>
   )

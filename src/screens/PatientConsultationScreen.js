@@ -7,7 +7,7 @@ function PatientConsultationScreen() {
   return (
     <div>
         <NavigationBar/>
-      <p>{data}</p>
+      <p>{data.patient_info.firstName}</p>
     </div>
   );
 }
